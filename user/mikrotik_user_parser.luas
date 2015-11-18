@@ -1,0 +1,53 @@
+function miktorik_whoisthere(users_table,mikrotik_table)
+  usermactable = users_table
+  output = mikrotik_table
+  activeusertable = {}
+  activeuserstext = ""
+  activeusersnametable = {}
+
+  for i = 1,3 do
+    strlen = string.find(output, "\n")
+    if (strlen ~= nil) then
+    	output = string.sub(output, strlen+1)
+    end
+  end
+
+  i=1
+  while (string.find(output, "\n") ~= nil) do
+    local s, e, a = string.find(output, "(%w+:%w+:%w+:%w+:%w+:%w+)") 
+    strlen = string.find(output, "\n")
+    output = string.sub(output, strlen+1) 
+    i=i+1
+    for i2 = 1,#usermactable do
+      if (a == usermactable[i2]) then 
+        olduser = 0
+        for i3 = 1,#activeusertable do
+          if (activeusertable[i3] == usermactable[i2+1]) then
+            olduser = 1
+          end
+        end
+        if (olduser ~= 1 or usermactable[i2+1] == "?") then
+          if (usermactable[i2+1] == "?") then
+            activeusertable[#activeusertable+1] = usermactable[i2+2] .. "(not found name)"
+          else
+            activeusertable[#activeusertable+1] = usermactable[i2+1] 
+          end
+        end
+      end
+    end
+  end
+
+  for i = 1,#activeusertable do
+    activeuserstext = activeuserstext .. activeusertable[i] .. "<p>\n"
+  end
+
+  if (activeuserstext == "") then
+    activeuserstext = "В офисе никого нет<p>\n"
+  end
+    
+  return activeuserstext
+  
+end
+  
+  
+  
