@@ -21,6 +21,8 @@
 Скачиваем архив https://github.com/vvzvlad/LM-MikrotikUserParser/raw/master/MikrotikUserParser.tar.gz и кнопкой **Restore/add libraries** в **Scripts** -> **User libraries** устанавливаем архив. 
 
 Сохраняем скрипт. 
+
+###Использование
 Создаем новый **Scheduled** скрипт, настраивая его ну нужную вам частоту запуска(например, раз в 5 минут: */5 * * * *), и вызываем в нем функцию следующим образом:
 
 `activeuserstext = miktorik_whoisthere(users_table,mikrotik_table)`
@@ -73,6 +75,6 @@ setInterval(function() {location.reload();}, 20000);
 3)В нужном месте визуализации создаем Frame, и указываем его адрес: **http://logicmachine.lc:8080/activeusers.lp**
 
 
-
- По всем вопросам по функционалу, ошибках, исправлениям, доработкам можно обращаться по почте vvzvlad@gmail.com
+###Помощь и поддержка
+По всем вопросам по функционалу, ошибках, исправлениям, доработкам можно обращаться по почте vvzvlad@gmail.com
 
